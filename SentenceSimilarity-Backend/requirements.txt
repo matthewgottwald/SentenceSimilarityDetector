@@ -1,0 +1,9 @@
+flask
+flask_cors
+nltk
+numpy
+pandas
+pywsd
+scipy
+sentence_transformers
+sklearn
