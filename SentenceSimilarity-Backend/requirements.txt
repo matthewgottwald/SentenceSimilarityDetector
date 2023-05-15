@@ -7,3 +7,4 @@ pywsd
 scipy
 sentence_transformers
 sklearn
+openai

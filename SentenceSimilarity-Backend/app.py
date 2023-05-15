@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, abort
 import os
 
-from Implementations import cosine_with_DBSCAN 
+from Implementations import cosine_with_DBSCAN
 from HelperFunctions import dict_to_list, cluster_by_index_with_doc, get_file_dict
 
 from flask_cors import CORS, cross_origin
@@ -10,7 +10,7 @@ UPLOAD_FOLDER = 'TextFiles/'
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'           
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
@@ -26,15 +26,17 @@ POST
       a new dictionary which is sent as a response json
 """
 
-@app.route("/find_clusters", methods=["GET","POST"])  
+
+@app.route("/find_clusters", methods=["GET", "POST"])
 def find_clusters():
     filenames = request.json["filenames"]
+    print(request)
     data = get_file_dict(app.config['UPLOAD_FOLDER'], filenames)
     corpus = dict_to_list(data)
-    clusters = cosine_with_DBSCAN(corpus) 
+    clusters = cosine_with_DBSCAN(corpus)
     clusters_with_docs = cluster_by_index_with_doc(clusters, data)
     print(clusters_with_docs)
-    return jsonify(clusters_with_docs) 
+    return jsonify(clusters_with_docs)
 
 
 """
@@ -52,10 +54,11 @@ Note: This endpoint is meant to be called by filepond, the file uploading
 library used in the front end.
 """
 
-@app.route("/upload", methods=["GET","POST", "DELETE"])
+
+@app.route("/upload", methods=["GET", "POST", "DELETE"])
 @cross_origin()
 def upload():
-    if request.method in ["GET", "DELETE"] :
+    if request.method in ["GET", "DELETE"]:
         return {}
     file = request.files['filepond']
     filename = file.filename
@@ -68,9 +71,6 @@ def upload():
         return {}
     abort(500)
 
-    
 
-
-
-if __name__ == "__main__":        
-    app.run()   
+if __name__ == "__main__":
+    app.run()
