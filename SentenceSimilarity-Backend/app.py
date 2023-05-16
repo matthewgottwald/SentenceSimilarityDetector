@@ -2,10 +2,13 @@ from flask import Flask, request, jsonify, abort
 import os
 
 from Implementations import cosine_with_DBSCAN
-from HelperFunctions import dict_to_list, cluster_by_index_with_doc, get_file_dict
+from HelperFunctions import dict_to_list, cluster_by_index_with_doc, get_file_dict, get_ai_article
 
 from flask_cors import CORS, cross_origin
 UPLOAD_FOLDER = 'TextFiles/'
+
+# Update this with your generated open ai key
+API_KEY = "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"
 
 
 app = Flask(__name__)
@@ -30,7 +33,8 @@ POST
 @app.route("/find_clusters", methods=["GET", "POST"])
 def find_clusters():
     filenames = request.json["filenames"]
-    print(request)
+    get_ai_article(app.config['UPLOAD_FOLDER'], filenames[0], API_KEY)
+    filenames.append("ai_written_article.txt")
     data = get_file_dict(app.config['UPLOAD_FOLDER'], filenames)
     corpus = dict_to_list(data)
     clusters = cosine_with_DBSCAN(corpus)

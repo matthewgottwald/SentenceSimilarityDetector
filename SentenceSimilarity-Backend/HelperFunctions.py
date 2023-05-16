@@ -1,16 +1,18 @@
 from sentence_transformers import SentenceTransformer
+import openai
+
 
 def get_cluster_dict(clusters, sentences):
     max_cluster = max(clusters)
     cluster_dict = {}
     for i in range(-1, max_cluster + 1):
         cluster_dict[i] = []
-    
+
     for i in range(len(clusters)):
         cluster = clusters[i]
         sentence = sentences[i]
         cluster_dict[cluster].append(sentence)
-    
+
     return cluster_dict
 
 
@@ -19,13 +21,14 @@ def cluster_by_index(clusters):
     cluster_dict = {}
     for i in range(-1, max_cluster + 1):
         cluster_dict[i] = []
-    
+
     for i in range(len(clusters)):
         cluster = clusters[i]
         index = i
         cluster_dict[cluster].append(index)
-    
+
     return cluster_dict
+
 
 """
 embed_corpus
@@ -35,6 +38,8 @@ OUTPUT
     List of numpy arrays
     Each array is a vector embedding of a sentence in corpus (indecies preserved)
 """
+
+
 def embed_corpus(corpus):
     embedder = SentenceTransformer('bert-base-nli-mean-tokens')
     return embedder.encode(corpus)
@@ -48,6 +53,8 @@ PARAMS
 OUTPUT
     clusters with all non-negative keys re-labelled to be above x
 """
+
+
 def re_index_clusters(clusters, x):
     starting_index = x + 2
     re_indexed = {}
@@ -57,8 +64,9 @@ def re_index_clusters(clusters, x):
 
     for key in clusters.keys():
         re_indexed[starting_index + key] = clusters[key]
-    
+
     return re_indexed
+
 
 """
 dict_to_list
@@ -90,12 +98,13 @@ dict_to_list(dic) =>
 ]
 """
 
+
 def dict_to_list(dic):
     ls = []
     for i in range(max(dic.keys()) + 1):
         sentence = dic[i]["sentence"]
         ls.append(sentence)
-        
+
     return ls
 
 
@@ -152,6 +161,8 @@ cluster_by_index_with_doc(clusters, sentence_dict) =>
     ]
 }
 """
+
+
 def cluster_by_index_with_doc(clusters, sentence_dict):
     res = {}
     for key in clusters.keys():
@@ -162,6 +173,7 @@ def cluster_by_index_with_doc(clusters, sentence_dict):
             sentences.append(sentence_dict[index])
         res[key] = sentences
     return res
+
 
 """
 get_file_dict
@@ -199,6 +211,7 @@ get_file_dict("fileFolder/", ["file1.txt", "file2.txt", "file3.txt"]) =>
 }
 """
 
+
 def get_file_dict(path, files):
     file_dict = {}
     i = 0
@@ -210,6 +223,40 @@ def get_file_dict(path, files):
         for j in range(len(sentences)):
             sentence = sentences[j]
             if sentence != "":
-                file_dict[i] = { "sentence": sentence, "file": filename }
-                i+=1
+                file_dict[i] = {"sentence": sentence, "file": filename}
+                i += 1
     return file_dict
+
+
+"""
+get_ai_article
+PARAMS
+    path: String. filepath to folder with all of the files
+    file: String. contains the filename
+    api_key: String. contains the user generate openAI key
+OUTPUT
+    None
+    Generates a new file called ai_written_article.txt which contains an 
+    AI writen article based on the summary of the user provided text
+"""
+
+
+def get_ai_article(path, filename, api_key):
+    # Set the api key
+    openai.api_key = api_key
+
+    # Open user written file
+    file = open(path + filename, "r")
+    text = file.read()
+
+    # Generate AI written article
+    response = openai.Completion.create(
+        engine='text-davinci-003',  # GPT-3.5 model engine
+        prompt='Hello ChatGPT, please first summarize and then using that summary, write an article for the following text: ' + text,
+        max_tokens=1024)
+    article = response.choices[0].text.strip()
+
+    # Save AI written article
+    with open("TextFiles/ai_written_article.txt", "w") as output_file:
+        output_file.write(article)
+    print("Article generated succesfully")
