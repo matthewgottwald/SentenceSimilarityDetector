@@ -5,9 +5,10 @@ chatGPT to generate an article based on a summary of the users article. This is 
 
 The user can also compare multiple user written articles against each other to search for similarities in sentence structure between the articles.
 
+# Loading screen of application
 <img width="959" alt="Screenshot 2023-05-16 130144" src="https://github.com/matthewgottwald/SentenceSimilarity/assets/45056814/4f710a92-9ab7-4ae7-9040-9ef7646afcbc">
 
-User uploaded file + clusters of similarity
+# User uploaded file + clusters of similarity with ChatGPT
 <img width="952" alt="Screenshot 2023-05-16 130214" src="https://github.com/matthewgottwald/SentenceSimilarity/assets/45056814/e0333a9c-a8ab-415a-8607-60b15faa00ff">
 
 # To setup the SentenceSimilarity-Backend
