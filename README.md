@@ -1,7 +1,9 @@
 # Description of APP
 
-This app allows users to compare personal writing with AI to look for similarities in writing style. The user simply uploads there writing and the application will ask
-chatGPT to generate an article based on a summary of the users article. This is then compared against the users article to search for similiarties in writing.
+This app allows users to compare personal writing with AI to look for similarities in writing style. The user simply uploads their writing and the application will ask
+chatGPT to generate an article based on a summary of the users article. This is then compared against the users article to search for similiarties in writing. <br />
+
+The user can also compare multiple user written articles against each other to search for similarities in sentence structure between the articles.
 
 <img width="959" alt="Screenshot 2023-05-16 130144" src="https://github.com/matthewgottwald/SentenceSimilarity/assets/45056814/4f710a92-9ab7-4ae7-9040-9ef7646afcbc">
 
