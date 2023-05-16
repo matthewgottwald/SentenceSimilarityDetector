@@ -8,7 +8,7 @@ from flask_cors import CORS, cross_origin
 UPLOAD_FOLDER = 'TextFiles/'
 
 # Update this with your generated open ai key
-API_KEY = "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"
+API_KEY = "Enter your open API Key Here"
 
 
 app = Flask(__name__)
