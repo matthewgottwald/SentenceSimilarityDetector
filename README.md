@@ -1,9 +1,10 @@
 # Description of APP
-<img w<img width="952" alt="Screenshot 2023-05-16 130214" src="https://github.com/matthewgottwald/SentenceSimilarity/assets/45056814/07b133bb-aa9b-4d12-9cae-5a44e90d51ba">
-idth="959" alt="Screenshot 2023-05-16 130144" src="https://github.com/matthewgottwald/SentenceSimilarity/assets/45056814/77b76f6a-83c1-4b78-9030-f592443bb064">
-
 This app allows users to compare personal writing with AI to look for similarities in writing style. The user simply uploads there writing and the application will ask
 chatGPT to generate an article based on a summary of the users article. This is then compared against the users article to search for similiarties in writing.
+
+<img width="959" alt="Screenshot 2023-05-16 130144" src="https://github.com/matthewgottwald/SentenceSimilarity/assets/45056814/4f710a92-9ab7-4ae7-9040-9ef7646afcbc">
+
+<img width="952" alt="Screenshot 2023-05-16 130214" src="https://github.com/matthewgottwald/SentenceSimilarity/assets/45056814/e0333a9c-a8ab-415a-8607-60b15faa00ff">
 
 # To setup the SentenceSimilarity-Backend
 
