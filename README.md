@@ -1,4 +1,5 @@
 # Description of APP
+
 This app allows users to compare personal writing with AI to look for similarities in writing style. The user simply uploads there writing and the application will ask
 chatGPT to generate an article based on a summary of the users article. This is then compared against the users article to search for similiarties in writing.
 
@@ -10,26 +11,26 @@ User uploaded file + clusters of similarity
 # To setup the SentenceSimilarity-Backend
 
 Inside the SentenceSimilarity-Backend folder enter the following commands into commandline:
-bash
-python3 -m venv venv
-source venv/bin/activate
-pip3 install -r requirements.txt
+bash <br />
+python3 -m venv venv <br />
+source venv/bin/activate <br />
+pip3 install -r requirements.txt <br />
 
-Navigate to the app.py file and enter your personally generated API key into the API_Key Constant https://platform.openai.com/overview
+Navigate to the app.py file and enter your personally generated API key into the API_Key Constant https://platform.openai.com/overview <br />
 This will be used for all the calls to ChatGPT API
 
 # To run the SentenceSimilarity-Backend once setup is complete
 
-bash
-source venv/bin/activate
-python3 app.py
+bash <br />
+source venv/bin/activate <br />
+python3 app.py <br />
 
 # To setup the SentenceSimilarity-Frontend
 
-Inside the SentenceSimilarity-Frontend folder enter the following commands into commandline:
-npm i
+Inside the SentenceSimilarity-Frontend folder enter the following commands into commandline: <br />
+npm i <br />
 
 # To run the SentenceSimilarity-Frontend once setup is complete
 
-bash
-npm start
+bash <br />
+npm start <br />
