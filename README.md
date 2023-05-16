@@ -10,7 +10,7 @@ User uploaded file + clusters of similarity
 
 # To setup the SentenceSimilarity-Backend
 
-Inside the SentenceSimilarity-Backend folder enter the following commands into commandline:
+Inside the SentenceSimilarity-Backend folder enter the following commands into commandline: <br />
 bash <br />
 python3 -m venv venv <br />
 source venv/bin/activate <br />
